@@ -1,7 +1,9 @@
-#include <iostream>
+#include "ingame.h"
+
 
 int main() {
 
-	std::cout << "hello" << std::endl;
+	UserInterface start;
+	start.load_info();
 	return 0;
 }
