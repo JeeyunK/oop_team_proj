@@ -7,25 +7,25 @@
 
 using namespace std;
 
-class Practice_info {
+class PracticeInfo {
 	int correct;
 	int wrong;
 	double user_correctness;
 
 public:
-	Practice_info();
-	~Practice_info() {}
+	PracticeInfo();
+	~PracticeInfo() {}
 	virtual double check_info(queue <string> written_vector, string user_sentence, int& entire_correct);
 };
 
-class Sentence : public Practice_info {
+class Sentence : public PracticeInfo {
 public:
-	queue <string> written_queue;
-	vector <string> user_vector;
-	string user_sentence;
-	int written_num;
-	ifstream written_file;
-	double user_time;
+	queue <string> _writtenQueue;
+	vector <string> _userVector;
+	string _userSentence;
+	int _writtenNum;
+	ifstream _writtenFile;
+	double _userTime;
 
 public:
 	Sentence();
@@ -45,15 +45,16 @@ public:
 	void check_time();
 };*/
 
-class Interface : public Sentence {
-	string user_info;
-	double entire_correctness;
-	double entire_time;
-	int entire_correct;
+
+class UserInterface        : public Sentence {
+	string _userInfo;
+	double _entireCorrectness;
+	double _entireTime;
+	int _entireCorrect;
 
 public:
-	Interface();
-	~Interface() {}
+	UserInterface();
+	~UserInterface() {}
 	virtual void basic_out();
 	virtual void load_info();
 };

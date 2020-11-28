@@ -7,31 +7,31 @@
 #include <time.h>
 
 Sentence::Sentence() {
-	written_queue = {};
-	user_vector = {};
-	user_sentence = "";
-	written_num = 0;
-	user_time = 0;
+	_writtenQueue = {};
+	_userVector = {};
+	_userSentence = "";
+	_writtenNum = 0;
+	_userTime = 0;
 }
 
 void Sentence::load_written() {
 	cout << "Please select number" << endl;
 	cout << "1: Lesiure" << endl;
-	cin >> written_num;
+	cin >> _writtenNum;
 	Sleep(10);
 	system("cls");
-	switch (written_num) {
+	switch (_writtenNum) {
 	case 1:
-		written_file.open("C:\\Users\\junyh\\OneDrive\\Desktop\\Lesiure.txt", ios::in);
+		_writtenFile.open("C:\\Users\\junyh\\OneDrive\\Desktop\\Lesiure.txt", ios::in);
 		break;
 	}
-	if (written_file.is_open()) {
-		while (!written_file.eof()) {
+	if (_writtenFile.is_open()) {
+		while (!_writtenFile.eof()) {
 			string written_sentence;
-			getline(written_file, written_sentence);
-			written_queue.push(written_sentence);
+			getline(_writtenFile, written_sentence);
+			_writtenQueue.push(written_sentence);
 		}
-		written_file.close();
+		_writtenFile.close();
 	}
 	else {
 		cout << "We have a problem with open file: Can not open the file" << endl;
@@ -40,32 +40,32 @@ void Sentence::load_written() {
 
 void Sentence::in_sentence() {
 	Sleep(10);
-	user_sentence = "";
+	_userSentence = "";
 	cout << "-> ";
 	clock_t start, finish;
 	start = clock();
 	int i = 0;
-	while (user_sentence.empty()) {
+	while (_userSentence.empty()) {
 		if (i > 2) {
 			cout << "please insert sentence" << endl;
 		}
-		getline(cin, user_sentence);
+		getline(cin, _userSentence);
 		i++;
 	}
 	finish = clock();
-	user_time = (finish - start);
-	user_time = user_time / 1000.0;
-	user_vector.push_back(user_sentence);
+	_userTime = (finish - start);
+	_userTime = _userTime / 1000.0;
+	_userVector.push_back(_userSentence);
 }
 
 
-Practice_info::Practice_info() {
+PracticeInfo::PracticeInfo() {
 	correct = 0;
 	wrong = 0;
 	user_correctness = 0;
 }
 
-double Practice_info::check_info(queue <string> written_vector, string user_sentence, int& entire_correct) {
+double PracticeInfo::check_info(queue <string> written_vector, string user_sentence, int& entire_correct) {
 	string written_buffer;
 	string user_buffer;
 	written_buffer = written_vector.front();
@@ -95,13 +95,13 @@ double Practice_info::check_info(queue <string> written_vector, string user_sent
 	return user_correctness;
 }
 
-Interface::Interface() {
-	user_info = "";
-	entire_correctness = 0;
-	entire_time = 0;
-	entire_correct = 0;
+UserInterface::UserInterface() {
+	_userInfo = "";
+	_entireCorrectness = 0;
+	_entireTime = 0;
+	_entireCorrect = 0;
 }
-void Interface::basic_out() {
+void UserInterface::basic_out() {
 	load_written();
 	system("cls");
 	cout << "Start game after 3 seconds!!" << endl;
@@ -109,32 +109,32 @@ void Interface::basic_out() {
 	system("cls");
 	int i = 0;
 	//in_sentence();
-	while (!written_queue.empty()) {
+	while (!_writtenQueue.empty()) {
 		i++;
-		cout << "Current your correctness : " << entire_correctness << ", Current your speed : " << entire_correct / entire_time << endl;
-		cout << i << ". " << written_queue.front() << endl;
+		cout << "Current your correctness : " << _entireCorrectness << ", Current your speed : " << _entireCorrect / _entireTime << endl;
+		cout << i << ". " << _writtenQueue.front() << endl;
 		Sleep(10);
 		in_sentence();
 		Sleep(10);
 		system("cls");
-		entire_time += user_time;
-		entire_correctness = check_info(written_queue, user_sentence, entire_correct);
-		written_queue.pop();
+		_entireTime += _userTime;
+		_entireCorrectness = check_info(_writtenQueue, _userSentence, _entireCorrect);
+		_writtenQueue.pop();
 	}
 }
 
-void Interface::load_info() {
+void UserInterface::load_info() {
 	cout << "Please insert your name : ";
-	getline(cin, user_info);
+	getline(cin, _userInfo);
 	basic_out();
 	cout << "Great job! " << endl;
 	cout << "           Your Score" << endl;
-	cout << "Correctness : " << entire_correctness << " Speed : " << entire_correct / entire_time << endl;
+	cout << "Correctness : " << _entireCorrectness << " Speed : " << _entireCorrect / _entireTime << endl;
 }
 
 
 int main() {
-	Interface start;
+	UserInterface start;
 	start.load_info();
 	return 0;
 }
