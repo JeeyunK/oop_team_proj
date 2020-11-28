@@ -7,7 +7,7 @@ PracticeInfo::PracticeInfo() {
 	user_correctness = 0;
 }
 
-double PracticeInfo::check_info(queue <string> written_vector, string user_sentence, int& entire_correct) {
+double PracticeInfo::check_info(queue <string> written_vector, string user_sentence) {
 	string written_buffer;
 	string user_buffer;
 	written_buffer = written_vector.front();
@@ -33,7 +33,7 @@ double PracticeInfo::check_info(queue <string> written_vector, string user_sente
 
 		wrong += (written_buffer.size() - i);
 	}
-	entire_correct = correct;
+	//entire_correct = correct;
 	user_correctness = (double)((correct * 100) / (correct + wrong));
 	Sleep(500);
 	return user_correctness;

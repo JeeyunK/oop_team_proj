@@ -139,7 +139,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ingame.cpp" />
+    <ClCompile Include="PracticeInfo.cpp" />
+    <ClCompile Include="Sentence.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ingame.h" />

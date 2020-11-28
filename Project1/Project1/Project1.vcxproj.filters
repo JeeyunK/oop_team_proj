@@ -18,7 +18,13 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ingame.cpp">
+    <ClCompile Include="Sentence.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PracticeInfo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
