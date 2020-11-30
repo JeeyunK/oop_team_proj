@@ -6,7 +6,9 @@
 #include <string>
 #pragma warning (disable: 4996)
 
-
+// this function just update Score class object
+// this will find initial_file.txt and update the info in txt file.
+// if there's no text in file, just print "there is no save file"
 void Score::update_score() {
 	std::string name[100];
 	int speed[100];
@@ -83,12 +85,14 @@ void Score::update_score() {
 	
 
 }
+//show score and correctness, name in decreasing order. 
+//that means you can see this just a rank.
 void Score::show_Score() {
 	for (int i = 0; i < size; i++) {
 		std::cout << list[i].speed << " " << list[i].correctness <<" " << list[i].name << std::endl;
 	}
 }
-
+//use this function to add the info about someone's score to the Initial_file.txt file.
 void Score::Add_Score(std::string name, double correctness, int speed) {
 	std::ofstream file;
 	file.open("C:\\Users\\kim\\Documents\\INITIAL_FILE.txt", std::ios::app);

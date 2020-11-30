@@ -5,17 +5,23 @@
 #include <stdio.h>
 #include <string>
 #pragma warning (disable: 4996)
+//show filepath.txt's filepaths
+
 void file::show_path() {
 	for (int i = 0; i < size; i++) {
 		std::cout << i << ". " << file_list[i].PATH << std::endl;
 	}
 }
+// show filenames like a list.
 void file::show_list() {
 	for (int i = 0; i < size; i++) {
 		std::cout << i << ". " << file_list[i].name << std::endl;
 	}
 
 }
+//if you want to add file, just use this function.
+//use like add_file(filename, path)
+//this function add filename and path to the filepath.txt file to 
 void file::add_file(std::string tmp_filename, std::string path) {
 	std::ofstream file;
 	file.open("C:\\Users\\kim\\Documents\\filepath.txt", std::ios::app);
@@ -34,6 +40,8 @@ void file::add_file(std::string tmp_filename, std::string path) {
 	}
 	file.close();
 }
+//this will update the filename in tmp_filename,path[100] 
+//it just open a file and update the contents in filepath.txt
 void file::update_filepath() {
 	std::string tmp_filename[100];
 	std::string tmp_filepath[100];
