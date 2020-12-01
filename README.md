@@ -53,3 +53,39 @@ class PracticeInfo를 상속함. 짧은글쓰기 stage list에서 유저가 선�
   - fontsizeChange(): option의 Font Size Change를 선택했을 때의 interface를 관리한다.
   
  
+### file.h
+1. struct file_struct
+
+file의 이름과 경로를 관리하기 위한 struct
+
+2. class file
+
+짧은글쓰기 stage의 file 입출력 관련 기능을 담당하는 class이다.
+
+- member variable:
+	- struct file_struct file_list: 스테이지 파일의 정보를 저장한다.
+	- int size: file_list에 저장된 file_struct의 수를 저장한다.
+- member function:
+	- void update_filepath(): filepath.txt 파일 내에 저장된 file의 이름, 경로 정보를 file_list에 저장한다.
+	- void show_path(): 저장된 file_struct의 PATH를 iterate해준다. 디버깅 용
+	- void get_file(): option 메뉴의 Insert the Game File을 선택했을 때의 interface를 관리하고, 유저가 입력하는 filename과 filepath를 add_file() 함수로 전달한다.
+	- bool add_file(string filename, string filepath): 전달받은 정보를 filepath.txt에 저장한다. 만약 입력받은 경로에 파일이 존재하지 않을 경우 이를 유저에게 알린다.
+	- void show_list(): 저장된 file_list의 name을 iterate해준다.
+	
+
+### Score.h
+1. struct form
+
+ranking으로 저장할 닉네임, 정확도, 타수 정보를 저장한다.
+
+2. class Score
+
+플레이 한 점수를 관리하는 class이다.
+
+- member variable:
+	- int size: 점수를 저장하는 INITIAL_FILE.txt에 저장된 form struct의 수를 저장한다.
+	- struct form list: 점수 정보를 저장한다.
+- member function:
+	- void update_score(): INITIAL_FILE.txt에 저장된 정보를 불러와 sorting한다.
+	- void show_score(): main menu의 Ranking 옵션에 들어갔을 때 존재하는 ranking 정보를 print해준다.
+	- void Add_Score(string name, double correctness, int speed): 짧은글쓰기 플레이 후 점수를 INITIAL_FILE.txt에 저장해준다.
