@@ -7,23 +7,23 @@ Sentence::Sentence() {
 	_userSentence = "";
 	_writtenNum = 0;
 	_userTime = 0;
+	_file;
 }
 
-void Sentence::load_written() {
+bool Sentence::load_written() {
+onemore:
+	_file.update_filepath();
 	cout << "Please select number" << endl;
-	cout << "1: Lesiure" << endl;
+	_file.show_list();
+	cout << "0. goto main menu" << endl;
+	cout << "Choice :";
 	cin >> _writtenNum;
 	Sleep(10);
 	system("cls");
-onemore:
-	switch (_writtenNum) {
-	case 1:
-		_writtenFile.open("Leisure.txt", ios::in);
-		break;
-	default:
-		cout << "Please enter the number in the list" << endl;
-		goto onemore;
-	}
+	if (_writtenNum == 0) return true;
+
+	const char* file_path = (_file.file_list[_writtenNum-1].PATH).c_str();
+	_writtenFile.open(file_path, ios::in);
 	if (_writtenFile.is_open()) {
 		while (!_writtenFile.eof()) {
 			string written_sentence;
@@ -34,8 +34,9 @@ onemore:
 	}
 	else {
 		cout << "We have a problem with open file: Can not open the file" << endl;
-		Sleep(3000);
+		goto onemore;
 	}
+	return false;
 }
 
 void Sentence::in_sentence() {

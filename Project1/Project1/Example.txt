@@ -1,0 +1,4 @@
+this is example file.
+you can test it in the game.
+예시 파일 입니다.
+플레이 시 활용됩니다.

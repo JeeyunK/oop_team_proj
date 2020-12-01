@@ -138,13 +138,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="file.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PracticeInfo.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Sentence.cpp" />
+    <ClCompile Include="Start.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ingame.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="Start.h" />
+    <ClInclude Include="file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
