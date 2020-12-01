@@ -35,9 +35,43 @@ bool UserInterface::basic_out() {
 	return false;
 }
 
-void UserInterface::load_info() {
-	Score score;
+void UserInterface::choose_option() {
 	int option_choice = 0;
+	system("cls");
+	cout << "What do you want?" << endl;
+	cout << "1: Font Size Change" << endl;
+	cout << "2: Insert the Game File" << endl;
+	cout << "3: Go back" << endl;
+option_loop:
+	cout << endl << "Choice: ";
+	cin >> option_choice;
+
+	switch (option_choice) {
+	case 1:
+		system("cls");
+		fontsizeChange();
+		cout << "\n\nWhat do you want now?" << endl;
+		Sleep(2000);
+		break;
+	case 2:
+		system("cls");
+		std::cin.ignore(32767, '\n');
+		_file.get_file();
+		cout << "\n\nWhat do you want now?" << endl;
+		Sleep(2000);
+		break;
+	case 3:
+		system("cls");
+		break;
+	default:
+		cout << "Please enter the number in the list" << endl;
+		goto option_loop;
+		break;
+	}
+}
+
+void UserInterface::load_info() {
+	//Score score;
 	_file.update_filepath();
 	cout << "Please insert your name : ";
 	getline(cin, _userInfo);
@@ -60,8 +94,8 @@ menu:
 		cout << "Great job! " << endl;
 		cout << "           Your Score" << endl;
 		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		score.Add_Score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
-		score.update_score();
+		_score.Add_Score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
+		_score.update_score();
 		cout << "Ranking is updated.\n" << endl;
 		cout << "What do you want to now?" << endl;
 		goto menu;
@@ -70,46 +104,13 @@ menu:
 		break;
 	case 3:
 		system("cls");
-		score.update_score();
-		score.show_Score();
+		_score.update_score();
+		_score.show_Score();
 		cout << "\n\nWhat do you want to now?" << endl;
 		goto menu;
 		break;
 	case 4:
-		system("cls");
-		cout << "What do you want?" << endl;
-		cout << "1: Font Size Change" << endl;
-		cout << "2: Insert the Game File" << endl;
-		cout << "3: Go back" << endl;
-	option_loop:
-
-		cout << endl << "Choice: ";
-		cin >> option_choice;
-
-		switch (option_choice) {
-		case 1:
-			system("cls");
-			fontsizeChange();
-			Sleep(2000);
-			cout << "\n\nWhat do you want now?" << endl;
-			goto menu;
-			break;
-		case 2:
-			system("cls");
-			std::cin.ignore(32767, '\n');
-			_file.get_file();
-			Sleep(2000);
-			cout << "\n\nWhat do you want now?" << endl;
-			goto menu;
-			break;
-		case 3:
-			system("cls");
-			goto choice_loop;
-		default:
-			cout << "Please enter the number in the list" << endl;
-			goto option_loop;
-			break;
-		}
+		choose_option();
 		break;
 	case 5:
 		system("cls");
