@@ -40,6 +40,11 @@ void file::add_file(std::string tmp_filename, std::string path) {
 	file.open("filepath.txt", std::ios::app);
 	file.seekp(0, std::ios::end);
 	int length = file.tellp();
+	std::ifstream Readfile;
+	Readfile.open(tmp_filename);
+	if (!Readfile.is_open()){
+		return ;
+	}
 	if (length == 0) {
 		file.write(tmp_filename.c_str(), tmp_filename.size());
 		file.write("_", 1);
@@ -52,6 +57,7 @@ void file::add_file(std::string tmp_filename, std::string path) {
 		file.write(path.c_str(), path.size());
 	}
 	file.close();
+	Readfile.close();
 }
 //this will update the filename in tmp_filename,path[100] 
 //it just open a file and update the contents in filepath.txt
