@@ -8,6 +8,7 @@ Sentence::Sentence() {
 	_writtenNum = 0;
 	_userTime = 0;
 	_file;
+	_score;
 }
 
 bool Sentence::load_written() {

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string.h>
 #include <iostream>
 
@@ -6,6 +8,7 @@ struct form {
 	double correctness;
 	int speed;
 };
+
 class Score {
 private:
 	int size;

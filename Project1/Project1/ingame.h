@@ -1,7 +1,8 @@
 #pragma once
 
 #include "file.h"
-#include "score.h"
+#include "Score.h"
+
 #include <iostream>
 #include <vector>
 #include <queue>
