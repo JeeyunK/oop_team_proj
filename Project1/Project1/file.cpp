@@ -17,7 +17,7 @@ void file::show_list() {
 	for (int i = 0; i < size; i++) {
 		std::cout << i +1<< ". " << file_list[i].name << std::endl;
 	}
-
+	
 }
 
 void file::get_file() {
@@ -43,6 +43,7 @@ void file::add_file(std::string tmp_filename, std::string path) {
 	std::ifstream Readfile;
 	Readfile.open(tmp_filename);
 	if (!Readfile.is_open()){
+		std::cout << "there is no that's filename\n";
 		return ;
 	}
 	if (length == 0) {
