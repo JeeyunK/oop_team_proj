@@ -89,3 +89,7 @@ ranking으로 저장할 닉네임, 정확도, 타수 정보를 저장한다.
 	- void update_score(): INITIAL_FILE.txt에 저장된 정보를 불러와 sorting한다.
 	- void show_score(): main menu의 Ranking 옵션에 들어갔을 때 존재하는 ranking 정보를 print해준다.
 	- void Add_Score(string name, double correctness, int speed): 짧은글쓰기 플레이 후 점수를 INITIAL_FILE.txt에 저장해준다.
+
+
+### Start.h
+사용하지 않는 class.(곧 삭제 예정)
