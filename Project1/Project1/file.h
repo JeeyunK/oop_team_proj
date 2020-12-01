@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 struct file_struct {
 	std::string name;
