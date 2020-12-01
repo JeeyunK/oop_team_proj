@@ -1,4 +1,20 @@
 ﻿  file.cpp
-C:\Users\kim\Documents\github_file\oop_team_proj\Project1\Project1\file.cpp(42,13): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\kim\Documents\github_file\oop_team_proj\Project1\Project1\file.cpp(73,21): warning C4244: '=': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Project1.vcxproj -> C:\Users\kim\Documents\github_file\oop_team_proj\Project1\Debug\Project1.exe
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\file.cpp(62,13): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\file.cpp(94,21): warning C4244: '=': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main.cpp
+  PracticeInfo.cpp
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\PracticeInfo.cpp(19,9): warning C4018: '>': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\PracticeInfo.cpp(32,8): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Score.cpp
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\Score.cpp(20,13): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\Score.cpp(100,13): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Sentence.cpp
+  Start.cpp
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\Start.cpp(49,11): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\Start.cpp(61,20): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
+  UserInterface.cpp
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\UserInterface.cpp(63,76): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\UserInterface.cpp(138,11): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\UserInterface.cpp(150,20): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
+  코드를 생성하고 있습니다...
+  Project1.vcxproj -> C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Debug\Project1.exe

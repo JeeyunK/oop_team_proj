@@ -13,7 +13,7 @@ public:
 	void show_path();
 
 	void get_file();
-	void add_file(std::string filename, std::string path);
+	bool add_file(std::string filename, std::string path);
 	void show_list();
 
 

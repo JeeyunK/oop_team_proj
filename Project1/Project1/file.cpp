@@ -21,6 +21,8 @@ void file::show_list() {
 }
 
 void file::get_file() {
+	int choice = 0;
+restart:
 	std::cout << "Insert Game File" << std::endl;
 	std::cout << "File name :";
 	std::string fname;
@@ -29,13 +31,32 @@ void file::get_file() {
 	std::cout << "File path :";
 	std::string fpath;
 	std::getline(std::cin, fpath);
-	add_file(fname, fpath);
+	bool result = add_file(fname, fpath);
+	if (!result) {
+		std::cout << "What do you want to do now?" << std::endl;
+		std::cout << "1. try one more" << std::endl;
+		std::cout << "2. go back to main menu" << std::endl;
+		std::cout << "Choice :";
+		std::cin >> choice;
+		std::cin.ignore(32767, '\n');
+		switch (choice) {
+		case 1:
+			system("cls");
+			goto restart;
+			break;
+		case 2:
+			system("cls");
+			return;
+		default: break;
+
+		}
+	}
 }
 
 //if you want to add file, just use this function.
 //use like add_file(filename, path)
 //this function add filename and path to the filepath.txt file to 
-void file::add_file(std::string tmp_filename, std::string path) {
+bool file::add_file(std::string tmp_filename, std::string path) {
 	std::ofstream file;
 	file.open("filepath.txt", std::ios::app);
 	file.seekp(0, std::ios::end);
@@ -44,7 +65,7 @@ void file::add_file(std::string tmp_filename, std::string path) {
 	Readfile.open(tmp_filename);
 	if (!Readfile.is_open()){
 		std::cout << "there is no that's filename\n";
-		return ;
+		return false;
 	}
 	if (length == 0) {
 		file.write(tmp_filename.c_str(), tmp_filename.size());
@@ -59,6 +80,7 @@ void file::add_file(std::string tmp_filename, std::string path) {
 	}
 	file.close();
 	Readfile.close();
+	return true;
 }
 //this will update the filename in tmp_filename,path[100] 
 //it just open a file and update the contents in filepath.txt
