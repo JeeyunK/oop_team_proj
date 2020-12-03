@@ -14,14 +14,15 @@ UserInterface::UserInterface() {
 bool UserInterface::basic_out() {
 	bool check = load_written();
 	if (check) return true;
+
 	system("cls");
-	cout << "Start game after 3 seconds!!" << endl;
+	cout << "\nStart game after 3 seconds!!" << endl;
 	Sleep(1000);
 	system("cls");
-	cout << "Start game after 2 seconds!!" << endl;
+	cout << "\nStart game after 2 seconds!!" << endl;
 	Sleep(1000);
 	system("cls");
-	cout << "Start game after 1 seconds!!" << endl;
+	cout << "\nStart game after 1 seconds!!" << endl;
 	Sleep(1000);
 	system("cls");
 	int i = 0;
@@ -47,7 +48,7 @@ bool UserInterface::basic_out() {
 void UserInterface::choose_option() {
 	int option_choice = 0;
 	system("cls");
-	cout << "What do you want?" << endl;
+	cout << "\nWhat do you want?" << endl;
 	cout << "1: Font Size Change" << endl;
 	cout << "2: Insert the Game File" << endl;
 	cout << "3: Go back" << endl;
@@ -82,7 +83,8 @@ option_loop:
 void UserInterface::load_info() {
 	//Score score;
 	_file.update_filepath();
-	cout << "Please insert your name : ";
+	_score.update_score();
+	cout << "\nPlease insert your name : ";
 	getline(cin, _userInfo);
 choice_loop:
 	cout << "MAIN MENU" << endl << endl;
@@ -103,17 +105,17 @@ menu:
 		cout << "Great job! " << endl;
 		cout << "           Your Score" << endl;
 		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		_score.Add_Score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
-		_score.update_score();
-		cout << "Ranking is updated.\n" << endl;
-		cout << "What do you want to now?" << endl;
+		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
+		reset_score();
+		//cout << "Ranking is updated.\n" << endl;
+		cout << "\nWhat do you want to now?" << endl;
 		goto menu;
 		break;
 	case 2:
 		break;
 	case 3:
 		system("cls");
-		_score.update_score();
+		//_score.update_score();
 		_score.show_Score();
 		cout << "\n\nWhat do you want to now?" << endl;
 		goto menu;
@@ -128,7 +130,7 @@ menu:
 		return;
 	default:
 		system("cls");
-		cout << "Please enter the number in the list" << endl;
+		cout << "\nPlease enter the number in the list" << endl;
 		//goto choice_loop;
 		break;
 	}
@@ -142,9 +144,9 @@ menu:
 void UserInterface::progressBar(float progress) {
 	//float progress = 0.0;
 	//while (progress < 1.0) {
-	cout << progress;
+	//cout << progress;
 	int barWidth = 50;
-	cout << "progress : [";
+	cout << "\n progress : [";
 	int pos = (barWidth * progress);
 	for (int i = 0; i < barWidth; ++i) {
 		if (i < pos)
@@ -161,7 +163,7 @@ void UserInterface::progressBar(float progress) {
 
 void UserInterface::fontsizeChange() {
 	int x, y;
-	cout << "Input desire font size in terms of length of X and Y" << endl;
+	cout << "\nInput desire font size in terms of length of X and Y" << endl;
 
 	cin >> x >> y;
 
@@ -175,4 +177,14 @@ void UserInterface::fontsizeChange() {
 	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), false, &cfi);
 
 	cout << "This is a changed font size" << endl;
+}
+
+void UserInterface::reset_score() {
+	correct = 0;
+	wrong = 0;
+	tot_letters = 0;
+	user_correctness = 0;
+
+	_entireCorrectness = 0;
+	_entireTime = 0;
 }

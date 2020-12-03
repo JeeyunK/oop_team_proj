@@ -56,7 +56,7 @@ choice_loop:
 		cout << "Great job! " << endl;
 		cout << "           Your Score" << endl;
 		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		score.Add_Score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
+		score.Write_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
 		score.update_score();
 		cout << "Ranking is updated." << endl;
 		break;

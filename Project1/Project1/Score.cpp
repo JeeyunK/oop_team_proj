@@ -11,9 +11,9 @@
 // this will find initial_file.txt and update the info in txt file.
 // if there's no text in file, just print "there is no save file"
 void Score::update_score() {
-	std::string name[100];
-	int speed[100];
-	double correctness[100];
+	std::string name;
+	int speed;
+	double correctness;
 
 	std::ifstream file;
 	file.open("INITIAL_FILE.txt");
@@ -21,119 +21,95 @@ void Score::update_score() {
 	int length = file.tellg();
 	file.seekg(0, std::ios::beg);
 	if (length == 0) {
-
-		std::cout << "there is no save file\n";
+		//std::cout << "there is no score now\n";
 		return;
 	}
 	size = 0;
-	int count = 0;
 	if (file.is_open()) {
 		while (!file.eof()) {
 			char tmp[256];
 			file.getline(tmp, 256);
-
 			char* ptr = strtok(tmp, "_");
-
 			int index = 0;
-			name[count] = ptr;
-
-			while (ptr != NULL) {
-				index++;
-				if (index == 1) {
-					ptr = strtok(NULL, "_");
-					correctness[count] = atof(ptr);
-
-				}
-				else if (index == 2) {
-					ptr = strtok(NULL, "_");
-					speed[count] = strtol(ptr, NULL, 10);
-				}
-				else {
-					ptr = strtok(NULL, "_");
-				}
-			}
-			count++;
+			name = ptr;
+			//std::cout << name << std::endl;
+			ptr = strtok(NULL, "_");
+			correctness = atof(ptr);
+			//std::cout << correctness << std::endl;
+			ptr = strtok(NULL, "_");
+			speed = strtol(ptr, NULL, 10);
+			//std::cout << speed << std::endl;
+			//ptr = strtok(NULL, "_");
+			struct form rnk { name, correctness, speed };
+			rank_list.push_back(rnk);
 			size++;
-
-		}
-		//sort by matric : speed. 
-		for (int i = 0; i < size - 1; i++) {
-			for (int j = i + 1; j < size; j++) {
-				if (speed[j] > speed[i]) {
-					//sorting
-					int tmp = speed[j];
-					speed[j] = speed[i];
-					speed[i] = tmp;
-
-					std::string tmp_name = name[j];
-					name[j] = name[i];
-					name[i] = tmp_name;
-
-					double tmp_corr = correctness[j];
-					correctness[j] = correctness[i];
-					correctness[i] = tmp_corr;
-				}
-			}
-		}
-		for (int i = 0; i < size; i++) {
-			list[i].name = name[i];
-			list[i].speed = speed[i];
-			list[i].correctness = correctness[i];
 		}
 	}
 	file.close();
-
-
-
 }
+
 //show score and correctness, name in decreasing order. 
 //that means you can see this just a rank.
 void Score::show_Score() {
-	for (int i = 0; i < size; i++) {
-		std::cout << list[i].speed << " " << list[i].correctness << " " << list[i].name << std::endl;
+	if (!rank_list.size()) {
+		std::cout << "There is no ranking now" << std::endl;
+		return;
+	}
+	int i = 1;
+	for (struct form tmp: rank_list) {
+		std::cout << i;
+		if (i == 1) std::cout << "ST ";
+		else if (i == 2) std::cout << "ND ";
+		else if (i == 3) std::cout << "RD ";
+		else std::cout <<"TH ";
+		std::cout << tmp.name << " " << tmp.speed << " " << tmp.correctness<< std::endl;
+		++i;
 	}
 }
-//use this function to add the info about someone's score to the Initial_file.txt file.
-void Score::Add_Score(std::string name, double correctness, int speed) {
-	std::ofstream file;
-	file.open("INITIAL_FILE.txt", std::ios::app);
-	file.seekp(0, std::ios::end);
-	int length = file.tellp();
-	if (length == 0) {
-		file.write(name.c_str(), name.size());
-		file.write("_", 1);
-		if (correctness == 100) {
-			std::string s = std::to_string(correctness) + '0';
-			file.write(s.c_str(), 5);
-			file.write("_", 1);
-			file.write(std::to_string(speed).c_str(), std::to_string(speed).size());
-		}
-		else {
-			std::string s = std::to_string(correctness);
-			file.write(s.c_str(), 4);
-			file.write("_", 1);
-			file.write(std::to_string(speed).c_str(), 3);
-		}
 
+void Score::add_score(std::string name, double correctness, int speed) {
+	for (std::list<form>::iterator it = rank_list.begin(); it != rank_list.end(); ++it) {
+		if ((*it).speed < speed) {
+			struct form rnk { name, correctness, speed };
+			rank_list.insert(it, rnk);
+			if (rank_list.size() == 8) rank_list.pop_back();
+			Write_score();
+			size++;
+			return;
+		}
 	}
-	else {
-		file.write("\n", 1);
-		file.write(name.c_str(), sizeof(name.c_str()) - 1);
-		file.write("_", 1);
-		if (correctness == 100) {
-			std::string s = std::to_string(correctness) + '0';
-			file.write(s.c_str(), 5);
-			file.write("_", 1);
-			file.write(std::to_string(speed).c_str(), 3);
-		}
-		else {
-			std::string s = std::to_string(correctness);
-			file.write(s.c_str(), 4);
-			file.write("_", 1);
-			file.write(std::to_string(speed).c_str(), 3);
-		}
+	if (rank_list.size() == 7) return;
+	struct form rnk2 { name, correctness, speed };
+	rank_list.push_back(rnk2);
+	Write_score();
+	size++;
+}
 
+//use this function to add the info about someone's score to the Initial_file.txt file.
+void Score::Write_score() {
+	std::list<form>::iterator it = rank_list.begin();
+	std::ofstream file;
+	file.open("INITIAL_FILE.txt", std::ios::trunc);
+	if (!file.is_open()) std::cout << "file open failed" << std::endl;
+
+	std::string score = writer((*it).name, (*it).correctness, (*it).speed, 1);
+	//std::cout << score << std::endl;
+	file.write(score.c_str(), score.size());
+	++it;
+	for (; it != rank_list.end(); ++it) {
+		score = writer((*it).name, (*it).correctness, (*it).speed, 0);
+		file.write(score.c_str(), score.size());
+		//std::cout << score << std::endl;
 	}
 	file.close();
+}
 
+std::string Score::writer(std::string name, double correctness, int speed, bool first) {
+	std::string s;
+	if (correctness == 100) s = std::to_string(correctness) + '0';
+	else s = std::to_string(correctness);
+	std::string ret;
+	if (!first) ret += "\n";
+	ret += name + "_" + s.substr(0,4) + "_" + std::to_string(speed);
+	return ret;
 }

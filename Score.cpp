@@ -93,7 +93,7 @@ void Score::show_Score() {
 	}
 }
 //use this function to add the info about someone's score to the Initial_file.txt file.
-void Score::Add_Score(std::string name, double correctness, int speed) {
+void Score::Write_score(std::string name, double correctness, int speed) {
 	std::ofstream file;
 	file.open("C:\\Users\\kim\\Documents\\INITIAL_FILE.txt", std::ios::app);
 	file.seekp(0, std::ios::end);

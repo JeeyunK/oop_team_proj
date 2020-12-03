@@ -13,7 +13,7 @@ private:
 public:
 	void update_score();
 	void show_Score();
-	void Add_Score(std::string name, double correctness, int speed);
+	void Write_score(std::string name, double correctness, int speed);
 	
 
 };

@@ -2,6 +2,7 @@
 
 #include <string.h>
 #include <iostream>
+#include <list>
 
 struct form {
 	std::string name;
@@ -12,11 +13,11 @@ struct form {
 class Score {
 private:
 	int size;
-	struct form list[100];
+	std::list<struct form> rank_list;
 public:
 	void update_score();
 	void show_Score();
-	void Add_Score(std::string name, double correctness, int speed);
-
-
+	void add_score(std::string name, double correctness, int speed);
+	void Write_score();
+	std::string writer( std::string name, double correctness, int speed, bool first);
 };

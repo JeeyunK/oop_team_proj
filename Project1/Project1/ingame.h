@@ -69,6 +69,7 @@ public:
 	inline bool getRunning() const { return	running; }	//실행 중 출력
 	void progressBar(float);		//로딩바 출력
 	void fontsizeChange();		//폰트 크기 변경
+	void reset_score();
 };
 
 
