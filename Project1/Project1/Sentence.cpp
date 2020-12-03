@@ -12,17 +12,6 @@ Sentence::Sentence() {
 }
 
 bool Sentence::load_written() {
-onemore:
-	_file.update_filepath();
-	cout << "Please select number" << endl;
-	_file.show_list();
-	cout << "0. goto main menu" << endl;
-	cout << "Choice :";
-	cin >> _writtenNum;
-	Sleep(10);
-	system("cls");
-	if (_writtenNum == 0) return true;
-
 	const char* file_path = (_file.file_list[_writtenNum-1].PATH).c_str();
 	_writtenFile.open(file_path, ios::in);
 	if (_writtenFile.is_open()) {
@@ -34,8 +23,9 @@ onemore:
 		_writtenFile.close();
 	}
 	else {
+		system("cls");
 		cout << "We have a problem with open file: Can not open the file" << endl;
-		goto onemore;
+		return true;
 	}
 	return false;
 }

@@ -65,11 +65,13 @@ public:
 	~UserInterface() {}
 	virtual bool basic_out();	//managing total stage playing (invoke every methods)
 	virtual void load_info();	//invoking basic_out()
+	bool load_shortwriting();
 	virtual void choose_option();
 	inline bool getRunning() const { return	running; }	//실행 중 출력
 	void progressBar(float);		//로딩바 출력
 	void fontsizeChange();		//폰트 크기 변경
 	void reset_score();
+	void reset_input();
 };
 
 

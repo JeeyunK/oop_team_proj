@@ -72,13 +72,13 @@ void Score::add_score(std::string name, double correctness, int speed) {
 		if ((*it).speed < speed) {
 			struct form rnk { name, correctness, speed };
 			rank_list.insert(it, rnk);
-			if (rank_list.size() == 8) rank_list.pop_back();
+			if (rank_list.size() == 21) rank_list.pop_back();
 			Write_score();
 			size++;
 			return;
 		}
 	}
-	if (rank_list.size() == 7) return;
+	if (rank_list.size() == 20) return;
 	struct form rnk2 { name, correctness, speed };
 	rank_list.push_back(rnk2);
 	Write_score();

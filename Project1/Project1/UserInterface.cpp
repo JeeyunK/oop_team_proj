@@ -10,9 +10,36 @@ UserInterface::UserInterface() {
 	running = true;
 }
 
+bool UserInterface::load_shortwriting() {
+retry:
+	_file.update_filepath();
+	cout << "Please select number" << endl;
+	_file.show_list();
+	cout << "0. goto main menu" << endl;
+	cout << "Choice :";
+	cin >> _writtenNum;
+	if (cin.fail()) {
+		reset_input();
+		goto retry;
+	}
+	if (_writtenNum > _file.size) {
+		system("cls");
+		cout << "\nPlease enter the number in the list" << endl;
+		goto retry;
+	}
+	if (_writtenNum == 0) {
+		system("cls");
+		return true;
+	}
+	if (load_written()) goto retry;
+	Sleep(10);
+	return false;
+}
+
 //
 bool UserInterface::basic_out() {
-	bool check = load_written();
+
+	bool check = load_shortwriting();
 	if (check) return true;
 
 	system("cls");
@@ -74,7 +101,7 @@ option_loop:
 		system("cls");
 		break;
 	default:
-		cout << "Please enter the number in the list" << endl;
+		reset_input();
 		goto option_loop;
 		break;
 	}
@@ -100,6 +127,7 @@ menu:
 	bool check;
 	switch (choice) {
 	case 1:
+		system("cls");
 		check = basic_out();
 		if (check) break;
 		cout << "Great job! " << endl;
@@ -129,9 +157,7 @@ menu:
 		cout << endl << "Bye!";
 		return;
 	default:
-		system("cls");
-		cout << "\nPlease enter the number in the list" << endl;
-		//goto choice_loop;
+		reset_input();
 		break;
 	}
 	goto choice_loop;
@@ -187,4 +213,11 @@ void UserInterface::reset_score() {
 
 	_entireCorrectness = 0;
 	_entireTime = 0;
+}
+
+void UserInterface::reset_input() {
+	system("cls");
+	cout << "\nPlease enter the number in the list" << endl; // 에러 메시지 출력
+	cin.clear(); // 오류스트림을 초기화
+	cin.ignore(256, '\n'); // 입력버퍼를 비움
 }
