@@ -16,11 +16,20 @@ bool UserInterface::basic_out() {
 	if (check) return true;
 	system("cls");
 	cout << "Start game after 3 seconds!!" << endl;
-	Sleep(3000);
+	Sleep(1000);
+	system("cls");
+	cout << "Start game after 2 seconds!!" << endl;
+	Sleep(1000);
+	system("cls");
+	cout << "Start game after 1 seconds!!" << endl;
+	Sleep(1000);
 	system("cls");
 	int i = 0;
 	//in_sentence();
+	int qsize = _writtenQueue.size();
 	while (!_writtenQueue.empty()) {
+		float prog = ((float)i / (float)qsize);
+		progressBar(prog);
 		i++;
 		cout << "Current your correctness : " << _entireCorrectness << ", Current your speed : " << tot_letters / _entireTime * 60 << endl;
 		cout << i << ". " << _writtenQueue.front() << endl;
@@ -130,26 +139,23 @@ menu:
 }
 
 
-void UserInterface::progressBar() {
-	float progress = 0.0;
-
-	while (progress < 1.0) {
-		int barWidth = 70;
-		cout << "[";
-		int pos = barWidth * progress;
-		for (int i = 0; i < barWidth; i++) {
-			if (i < pos)
-				cout << "=";
-			else if (i == pos)
-				cout << ">";
-			else
-				cout << " ";
-		}
-		cout << "]" << int(progress * 100.0) << "%\r";
-		cout.flush();
-
-		progress += 0.005;
+void UserInterface::progressBar(float progress) {
+	//float progress = 0.0;
+	//while (progress < 1.0) {
+	cout << progress;
+	int barWidth = 50;
+	cout << "progress : [";
+	int pos = (barWidth * progress);
+	for (int i = 0; i < barWidth; ++i) {
+		if (i < pos)
+			cout << "=";
+		else if (i == pos)
+			cout << ">";
+		else
+			cout << " ";
 	}
+	cout << "] " << int(progress * 100.0) << "%\r";
+	cout.flush();	
 	cout << endl;
 }
 

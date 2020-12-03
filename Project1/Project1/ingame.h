@@ -67,7 +67,7 @@ public:
 	virtual void load_info();	//invoking basic_out()
 	virtual void choose_option();
 	inline bool getRunning() const { return	running; }	//실행 중 출력
-	void progressBar();		//로딩바 출력
+	void progressBar(float);		//로딩바 출력
 	void fontsizeChange();		//폰트 크기 변경
 };
 
