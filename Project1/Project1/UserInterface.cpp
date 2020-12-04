@@ -10,9 +10,9 @@ UserInterface::UserInterface() {
 	running = true;
 }
 
-bool UserInterface::load_shortwriting() {
+bool UserInterface::load_shortwriting(int tag) {
 retry:
-	_file.update_filepath();
+	_file.update_filepath(tag);
 	cout << "Please select number" << endl;
 	_file.show_list();
 	cout << "0. goto main menu" << endl;
@@ -36,10 +36,11 @@ retry:
 	return false;
 }
 
-//
-bool UserInterface::basic_out() {
 
-	bool check = load_shortwriting();
+//
+bool UserInterface::basic_out(int tag) {
+
+	bool check = load_shortwriting(tag);
 	if (check) return true;
 
 	system("cls");
@@ -134,7 +135,7 @@ option_loop:
 
 void UserInterface::load_info() {
 	//Score score;
-	_file.update_filepath();
+	_file.update_filepath(0);
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
 	getline(cin, _userInfo);
@@ -153,7 +154,7 @@ menu:
 	switch (choice) {
 	case 1:
 		system("cls");
-		check = basic_out();
+		check = basic_out(0);
 		if (check) break;
 		cout << "Great job! " << endl;
 		cout << "           Your Score" << endl;
@@ -165,6 +166,17 @@ menu:
 		goto menu;
 		break;
 	case 2:
+		system("cls");
+		check = basic_out(1);
+		if (check) break;
+		cout << "Great job! " << endl;
+		cout << "           Your Score" << endl;
+		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
+		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
+		reset_score();
+		//cout << "Ranking is updated.\n" << endl;
+		cout << "\nWhat do you want to now?" << endl;
+		goto menu;
 		break;
 	case 3:
 		system("cls");

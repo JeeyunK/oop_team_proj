@@ -11,11 +11,12 @@ public:
 	int size;
 
 public:
-	void update_filepath();
+	
 	void show_path();
 
 	void get_file();
-	bool add_file(std::string filename, std::string path);
+	void update_filepath(int tag);
+	bool add_file(int tag,std::string filename, std::string path);
 	void show_list();
 
 

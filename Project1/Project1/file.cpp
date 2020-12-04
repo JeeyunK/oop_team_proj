@@ -23,15 +23,33 @@ void file::show_list() {
 void file::get_file() {
 	int choice = 0;
 restart:
+	std::cout << "what stage file?" << std::endl;
+	std::cout << "0.short stage" << std::endl;
+	std::cout << "1.loger stage" << std::endl;
+	std::cout << std::endl << "Choice: ";
+	std::string input_tag;
+	std::getline(std::cin, input_tag);
+	int input_tag_stoi = atoi(input_tag.c_str());
+	int tag = 0;
+	if (input_tag_stoi == 1) {
+		tag = 1;
+	}
+	else if (input_tag_stoi == 0) {
+		tag = 0;
+	}
+	else {
+		std::cout << "wrong tag number" << std::endl;
+		goto restart;
+	}
+
 	std::cout << "Insert Game File" << std::endl;
 	std::cout << "File name :";
 	std::string fname;
 	std::getline(std::cin, fname);
-	
 	std::cout << "File path :";
 	std::string fpath;
 	std::getline(std::cin, fpath);
-	bool result = add_file(fname, fpath);
+	bool result = add_file(tag,fname, fpath);
 	if (!result) {
 		std::cout << "What do you want to do now?" << std::endl;
 		std::cout << "1. try one more" << std::endl;
@@ -56,7 +74,7 @@ restart:
 //if you want to add file, just use this function.
 //use like add_file(filename, path)
 //this function add filename and path to the filepath.txt file to 
-bool file::add_file(std::string tmp_filename, std::string path) {
+bool file::add_file(int tag, std::string tmp_filename, std::string path) {
 	std::ofstream file;
 	file.open("filepath.txt", std::ios::app);
 	file.seekp(0, std::ios::end);
@@ -84,18 +102,22 @@ bool file::add_file(std::string tmp_filename, std::string path) {
 }
 //this will update the filename in tmp_filename,path[100] 
 //it just open a file and update the contents in filepath.txt
-void file::update_filepath() {
+void file::update_filepath(int tag) {
 	std::string tmp_filename[100];
 	std::string tmp_filepath[100];
 	int length = 0;
 	std::ifstream file;
-
-	file.open("filepath.txt");
+	if (tag == 0) {
+		file.open("filepath.txt");
+	}
+	else if(tag == 1) {
+		file.open("longfilepath.txt");
+	}
+	
 	file.seekg(0, std::ios::end);
 	length = file.tellg();
 	file.seekg(0, std::ios::beg);
 	if (length == 0) {
-
 		std::cout << "there is no file\n";
 		return;
 	}

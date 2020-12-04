@@ -64,9 +64,9 @@ class UserInterface : public Sentence {
 public:
 	UserInterface();
 	~UserInterface() {}
-	virtual bool basic_out();	//managing total stage playing (invoke every methods)
+	virtual bool basic_out(int tag);	//managing total stage playing (invoke every methods)
 	virtual void load_info();	//invoking basic_out()
-	bool load_shortwriting();
+	bool load_shortwriting(int tag);
 	virtual void choose_option();
 	inline bool getRunning() const { return	running; }	//실행 중 출력
 	void progressBar(float);		//로딩바 출력
