@@ -23,6 +23,7 @@ public:
 	int wrong;     //the number of total incorrect letters
 	int tot_letters;	//the number of total letters, used in calculating speed
 	double user_correctness;	//Á¤È®µµ
+	queue <int> _wrongLetterIndex; // Index of wrong letters
 
 public:
 	PracticeInfo();

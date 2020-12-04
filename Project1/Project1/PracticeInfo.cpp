@@ -25,6 +25,7 @@ double PracticeInfo::check_info(queue <string> written_vector, string user_sente
 		}
 		else {
 			wrong++;
+			_wrongLetterIndex.push(i);
 		}
 		++tot_letters;
 		i++;
@@ -32,6 +33,9 @@ double PracticeInfo::check_info(queue <string> written_vector, string user_sente
 	if (i < written_buffer.size()) {
 
 		wrong += (written_buffer.size() - i);
+		for (int j = i; j < written_buffer.size(); j++) {
+			_wrongLetterIndex.push(j);
+		}
 	}
 	//entire_correct = correct;
 	user_correctness = (double)((correct * 100) / (correct + wrong));
