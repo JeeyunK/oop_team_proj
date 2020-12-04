@@ -1,6 +1,12 @@
 #pragma once
-#include "ingame.h"
 #include "conio.h"
+#include <iostream>
+#include <queue>
+#include <string>
+#include <windows.h>
+
+using namespace std;
+
 
 class MiniGame {
 //멤버변수
@@ -11,6 +17,7 @@ private:
 	int row;		//ui의 row 개수(세로 길이)
 	int column;		//ui의 column 개수(가로 길이)
 	int score;		//맞춘 단어 수
+	int speed;	//문자가 내려가는 속도
 
 
 //멤버함수

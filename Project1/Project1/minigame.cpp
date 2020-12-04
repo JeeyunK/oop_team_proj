@@ -6,6 +6,7 @@ MiniGame::MiniGame() {
 	row = 24;	//세로 길이 설정
 	column = 30;	//가로 길이 설정
 	score = 0;
+	speed = 2000;	//시작 속도 설정
 	ui = new char* [row];
 	for (int i=0;i<row;i++) {ui[i]=new char[column]; }		//이중배열 동적 할당
 }
@@ -64,7 +65,6 @@ void MiniGame::make_start() {
 void MiniGame::game(string word) {
 	int c = 0;		//문자가 시작할 column 위치
 	int length = word.length();		//전달받은 단어의 길이
-	int speed = 2000;	//문자가 내려가는 속도
 	int count = 0;		//입력받은 글자를 str에 넣기 위한 변수
 
 	srand((unsigned int)time(0));		//시드 생성
@@ -91,6 +91,9 @@ void MiniGame::game(string word) {
 				if (word.compare(str_copy) == 0) {
 					score++;
 					cout << score;
+					speed = speed - 100;
+					Sleep(500);
+
 					//여기서 새로운 game을 불러와야 함.
 					break;
 				}

@@ -109,6 +109,7 @@ option_loop:
 
 void UserInterface::load_info() {
 	//Score score;
+	MiniGame minigame;
 	_file.update_filepath();
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
@@ -120,7 +121,8 @@ menu:
 	cout << "2: Long Writing" << endl;
 	cout << "3: Ranking" << endl;
 	cout << "4: Options" << endl;
-	cout << "5: Quit" << endl;
+	cout << "5: MiniGame" << endl;
+	cout << "6: Quit" << endl;
 	cout << endl << "Choice: ";
 
 	cin >> choice;
@@ -152,6 +154,9 @@ menu:
 		choose_option();
 		break;
 	case 5:
+		system("cls");
+		minigame.game("APPLE");	//실제로 문자열의 배열이 입력되어야 함. 이 상태에선 하나의 문자만 돌아감.
+	case 6:
 		system("cls");
 		running = false;
 		cout << endl << "Bye!";
