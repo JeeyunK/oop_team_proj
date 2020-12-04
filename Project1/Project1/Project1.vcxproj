@@ -140,6 +140,8 @@
   <ItemGroup>
     <ClCompile Include="file.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="minigame.cpp" />
     <ClCompile Include="PracticeInfo.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Sentence.cpp" />
@@ -148,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ingame.h" />
+    <ClInclude Include="minigame.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Start.h" />
     <ClInclude Include="file.h" />

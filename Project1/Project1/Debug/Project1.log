@@ -1,8 +1,8 @@
-﻿  Score.cpp
-C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\Score.cpp(21,13): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Sentence.cpp
-  UserInterface.cpp
-C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\UserInterface.cpp(136,77): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Project1\UserInterface.cpp(176,10): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  main2.cpp
+  minigame.cpp
+C:\Users\Heewoong\Documents\GitHub\oop_team_proj\Project1\Project1\minigame.cpp(3,22): error C2600: 'MiniGame::MiniGame': 컴파일러 생성 특수 멤버 함수를 정의할 수 없습니다. 먼저 클래스에 선언해야 합니다.
+C:\Users\Heewoong\Documents\GitHub\oop_team_proj\Project1\Project1\minigame.cpp(7,11): error C2475: 'MiniGame::MiniGame': 재정의, 'constexpr' 지정자가 일치하지 않습니다.
+C:\Users\Heewoong\Documents\GitHub\oop_team_proj\Project1\Project1\minigame.cpp(3): message : 컴파일러에서 여기에 'MiniGame::MiniGame'을(를) 생성했습니다.
+C:\Users\Heewoong\Documents\GitHub\oop_team_proj\Project1\Project1\minigame.cpp(7,22): error C2600: 'MiniGame::MiniGame': 컴파일러 생성 특수 멤버 함수를 정의할 수 없습니다. 먼저 클래스에 선언해야 합니다.
+C:\Users\Heewoong\Documents\GitHub\oop_team_proj\Project1\Project1\minigame.cpp(10,10): error C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   코드를 생성하고 있습니다...
-  Project1.vcxproj -> C:\Users\김지윤\폴더\지윤\3-2\강의\객체 프로그래밍\visual_studio\TeamProject\oop_team_proj\Project1\Debug\Project1.exe
