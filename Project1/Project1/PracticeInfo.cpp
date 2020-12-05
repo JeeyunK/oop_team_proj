@@ -15,10 +15,15 @@ double PracticeInfo::check_info(queue <string> written_vector, string user_sente
 	user_buffer = user_sentence;
 
 	int i = 0;
-	while (user_buffer[i] != '\0') {
+	//cout <<"user buffer size : " << user_buffer.size() << endl;
+	while (user_buffer.size() != i) {
 		if (i > written_buffer.size()) {
-			wrong += user_buffer.size() - i;
-			break;
+			wrong++;
+			//wrong += user_buffer.size() - i;
+			_wrongLetterIndex.push(i);
+			i++;
+			continue;
+			//break;
 		}
 		if (user_buffer[i] == written_buffer[i]) {
 			correct++;

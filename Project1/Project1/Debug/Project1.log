@@ -1,4 +1,5 @@
-﻿  file.cpp
-C:\Users\kim\Documents\github_file\oop_team_proj\Project1\Project1\file.cpp(81,13): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\kim\Documents\github_file\oop_team_proj\Project1\Project1\file.cpp(118,21): warning C4244: '=': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Project1.vcxproj -> C:\Users\kim\Documents\github_file\oop_team_proj\Project1\Debug\Project1.exe
+﻿  PracticeInfo.cpp
+C:\Users\junyh\source\repos\oop_team_proj\Project1\Project1\PracticeInfo.cpp(20,9): warning C4018: '>': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\junyh\source\repos\oop_team_proj\Project1\Project1\PracticeInfo.cpp(38,8): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\junyh\source\repos\oop_team_proj\Project1\Project1\PracticeInfo.cpp(41,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Project1.vcxproj -> C:\Users\junyh\source\repos\oop_team_proj\Project1\Debug\Project1.exe
