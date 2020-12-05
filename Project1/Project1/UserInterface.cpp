@@ -1,6 +1,7 @@
 #include "ingame.h"
 #include "Score.h"
 #include "Start.h"
+#include "minigame.h"
 
 UserInterface::UserInterface() {
 	_userInfo = "";
@@ -134,7 +135,9 @@ option_loop:
 }
 
 void UserInterface::load_info() {
-	//Score score;
+	MiniGame minigame;	//minigame class를 불러오려고 한건데 여기가 아니라 다른 데로 가야 할것 같은데 모르겠음.
+	//미니게임용 단어 목록. 마찬가지로 다른 데 가야 할 것 같음.
+	string gameword[12] = { "Blue", "Red", "Orange", "Yellow", "Apple", "Cup", "Computer", "Bottle", "Mouse", "C++", "Medicine", "Congratulation" };
 	_file.update_filepath(0);
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
@@ -146,7 +149,8 @@ menu:
 	cout << "2: Long Writing" << endl;
 	cout << "3: Ranking" << endl;
 	cout << "4: Options" << endl;
-	cout << "5: Quit" << endl;
+	cout << "5: Minigame" << endl;
+	cout << "6: Quit" << endl;
 	cout << endl << "Choice: ";
 
 	cin >> choice;
@@ -189,6 +193,20 @@ menu:
 		choose_option();
 		break;
 	case 5:
+		system("cls");
+		for (int i = 0; i < 12; i++) {		//게임 실행
+			minigame.game(gameword[i]);
+		}
+		system("cls");		//화면 비우기
+		cout << "Game Over!" << endl;
+		Sleep(500);
+		cout << "Your Final Score is: " << minigame.return_score() << endl;		//점수 출력
+		Sleep(2000);		//점수를 보여주기 위한 딜레이.
+		system("cls");
+		cout << "What do you want to do now?" << endl;
+		goto menu;
+		break;
+	case 6:
 		system("cls");
 		running = false;
 		cout << endl << "Bye!";
