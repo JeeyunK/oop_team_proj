@@ -1,11 +1,6 @@
 #pragma once
 #include "conio.h"
-#include <iostream>
-#include <queue>
-#include <string>
-#include <windows.h>
-
-using namespace std;
+#include "ingame.h"
 
 
 class MiniGame {
@@ -17,7 +12,9 @@ private:
 	int row;		//ui의 row 개수(세로 길이)
 	int column;		//ui의 column 개수(가로 길이)
 	int score;		//맞춘 단어 수
-	int speed;	//문자가 내려가는 속도
+	int speed;		//문자가 내려가는 속도
+
+
 
 
 //멤버함수
@@ -30,4 +27,6 @@ public:
 	void ui_print();	//ui를 출력함.
 	void make_start();	//원래는 단어 동전쌓기처럼 만드려고 한 건데 바뀜. 사용하지 않음. 
 	void game(string word);	//word를 전달받아 산성비처럼 내려가게 하고, input을 입력받아 맞는 경우 score를 +1함.
+	void coin_stacking();
+	int return_score();	//score를 출력함.
 };

@@ -1,6 +1,7 @@
 #include "ingame.h"
 #include "Score.h"
 #include "Start.h"
+#include "minigame.h"
 
 UserInterface::UserInterface() {
 	_userInfo = "";
@@ -109,7 +110,9 @@ option_loop:
 
 void UserInterface::load_info() {
 	//Score score;
-	MiniGame minigame;
+	MiniGame minigame;	//minigame class를 불러오려고 한건데 여기가 아니라 다른 데로 가야 할것 같은데 모르겠음.
+	//미니게임용 단어 목록. 마찬가지로 다른 데 가야 할 것 같음.
+	string gameword[12] = { "Blue", "Red", "Orange", "Yellow", "Apple", "Cup", "Computer", "Bottle", "Mouse", "C++", "Medicine", "Congratulation" };
 	_file.update_filepath();
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
@@ -138,7 +141,7 @@ menu:
 		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
 		reset_score();
 		//cout << "Ranking is updated.\n" << endl;
-		cout << "\nWhat do you want to now?" << endl;
+		cout << "\nWhat do you want to do now?" << endl;
 		goto menu;
 		break;
 	case 2:
@@ -147,7 +150,7 @@ menu:
 		system("cls");
 		//_score.update_score();
 		_score.show_Score();
-		cout << "\n\nWhat do you want to now?" << endl;
+		cout << "\n\nWhat do you want to do now?" << endl;
 		goto menu;
 		break;
 	case 4:
@@ -155,7 +158,18 @@ menu:
 		break;
 	case 5:
 		system("cls");
-		minigame.game("APPLE");	//실제로 문자열의 배열이 입력되어야 함. 이 상태에선 하나의 문자만 돌아감.
+		for (int i = 0; i < 12; i++) {		//게임 실행
+			minigame.game(gameword[i]);
+		}
+		system("cls");		//화면 비우기
+		cout << "Game Over!" << endl;
+		Sleep(500);
+		cout << "Your Final Score is: " << minigame.return_score() << endl;		//점수 출력
+		Sleep(2000);		//점수를 보여주기 위한 딜레이.
+		system("cls");
+		cout << "What do you want to do now?" << endl;
+		goto menu;
+		break;
 	case 6:
 		system("cls");
 		running = false;
