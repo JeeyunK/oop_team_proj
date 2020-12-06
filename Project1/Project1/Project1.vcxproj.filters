@@ -36,6 +36,9 @@
     <ClCompile Include="Start.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="minigame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ingame.h">
@@ -48,6 +51,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="file.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="minigame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

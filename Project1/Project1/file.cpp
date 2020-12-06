@@ -80,7 +80,7 @@ bool file::add_file(int tag, std::string tmp_filename, std::string path) {
 	file.seekp(0, std::ios::end);
 	int length = file.tellp();
 	std::ifstream Readfile;
-	Readfile.open(tmp_filename);
+	Readfile.open(path);
 	if (!Readfile.is_open()){
 		std::cout << "there is no that's filename\n";
 		return false;
@@ -98,6 +98,7 @@ bool file::add_file(int tag, std::string tmp_filename, std::string path) {
 	}
 	file.close();
 	Readfile.close();
+	update_filepath(tag);
 	return true;
 }
 //this will update the filename in tmp_filename,path[100] 
