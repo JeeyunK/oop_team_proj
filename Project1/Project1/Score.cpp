@@ -66,7 +66,8 @@ void Score::show_Score() {
 		++i;
 	}
 }
-
+//add score on the score file.
+//just use like this - > add_score("kim", 100, 300 ); 
 void Score::add_score(std::string name, double correctness, int speed) {
 	for (std::list<form>::iterator it = rank_list.begin(); it != rank_list.end(); ++it) {
 		if ((*it).speed < speed) {
@@ -103,7 +104,8 @@ void Score::Write_score() {
 	}
 	file.close();
 }
-
+//if correctness == 100, there is a infinite points on display, so  we decide to use only 4 letter. 
+//else, just change correctness as a string and save the file.
 std::string Score::writer(std::string name, double correctness, int speed, bool first) {
 	std::string s;
 	if (correctness == 100) s = std::to_string(correctness) + '0';

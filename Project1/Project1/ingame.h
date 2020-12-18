@@ -73,6 +73,7 @@ public:
 	void fontsizeChange();		//폰트 크기 변경
 	void reset_score();
 	void reset_input();
+	void minigame_start();
 };
 
 

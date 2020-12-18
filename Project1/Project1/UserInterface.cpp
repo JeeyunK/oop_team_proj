@@ -2,6 +2,7 @@
 #include "Score.h"
 #include "Start.h"
 #include "minigame.h"
+//initialize the userinterface object. 
 
 UserInterface::UserInterface() {
 	_userInfo = "";
@@ -10,7 +11,7 @@ UserInterface::UserInterface() {
 	choice = 0;
 	running = true;
 }
-
+// we take a tag and make a choice to have a short/long game. 
 bool UserInterface::load_shortwriting(int tag) {
 retry:
 	_file.update_filepath(tag);
@@ -19,6 +20,7 @@ retry:
 	cout << "0. goto main menu" << endl;
 	cout << "Choice :";
 	cin >> _writtenNum;
+
 	if (cin.fail()) {
 		reset_input();
 		goto retry;
@@ -38,12 +40,12 @@ retry:
 }
 
 
-//
+
 bool UserInterface::basic_out(int tag) {
 
 	bool check = load_shortwriting(tag);
 	if (check) return true;
-
+	// make a wait time for 3 seconds.
 	system("cls");
 	cout << "\nStart game after 3 seconds!!" << endl;
 	Sleep(1000);
@@ -135,9 +137,8 @@ option_loop:
 }
 
 void UserInterface::load_info() {
-	MiniGame minigame;	//minigame class를 불러오려고 한건데 여기가 아니라 다른 데로 가야 할것 같은데 모르겠음.
-	//미니게임용 단어 목록. 마찬가지로 다른 데 가야 할 것 같음.
-	string gameword[12] = { "Blue", "Red", "Orange", "Yellow", "Apple", "Cup", "Computer", "Bottle", "Mouse", "C++", "Medicine", "Congratulation" };
+	
+	//as a default, we upadate filenames about short sentences and score info.
 	_file.update_filepath(0);
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
@@ -193,17 +194,7 @@ menu:
 		choose_option();
 		break;
 	case 5:
-		system("cls");
-		for (int i = 0; i < 12; i++) {		//게임 실행
-			minigame.game(gameword[i]);
-		}
-		system("cls");		//화면 비우기
-		cout << "Game Over!" << endl;
-		Sleep(500);
-		cout << "Your Final Score is: " << minigame.return_score() << endl;		//점수 출력
-		Sleep(2000);		//점수를 보여주기 위한 딜레이.
-		system("cls");
-		cout << "What do you want to do now?" << endl;
+		minigame_start();
 		goto menu;
 		break;
 	case 6:
@@ -275,4 +266,20 @@ void UserInterface::reset_input() {
 	cout << "\nPlease enter the number in the list" << endl; // 에러 메시지 출력
 	cin.clear(); // 오류스트림을 초기화
 	cin.ignore(256, '\n'); // 입력버퍼를 비움
+}
+
+void UserInterface::minigame_start() {
+	MiniGame minigame;
+	string gameword[12] = { "Blue", "Red", "Orange", "Yellow", "Apple", "Cup", "Computer", "Bottle", "Mouse", "C++", "Medicine", "Congratulation" };
+	system("cls");
+	for (int i = 0; i < 12; i++) {		//게임 실행
+		minigame.game(gameword[i]);
+	}
+	system("cls");		//화면 비우기
+	cout << "Game Over!" << endl;
+	Sleep(500);
+	cout << "Your Final Score is: " << minigame.return_score() << endl;		//점수 출력
+	Sleep(2000);		//점수를 보여주기 위한 딜레이.
+	system("cls");
+	cout << "What do you want to do now?" << endl;
 }

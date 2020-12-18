@@ -1,6 +1,6 @@
 #include "ingame.h"
 
-
+//initialize the sentence object.
 Sentence::Sentence() {
 	_writtenQueue = {};
 	//_userVector = {};
@@ -10,7 +10,8 @@ Sentence::Sentence() {
 	_file;
 	_score;
 }
-
+//load the filepath and open the file.
+//if there is no file, we just print "we have a problem ~ "
 bool Sentence::load_written() {
 	const char* file_path = (_file.file_list[_writtenNum-1].PATH).c_str();
 	_writtenFile.open(file_path, ios::in);
@@ -29,7 +30,7 @@ bool Sentence::load_written() {
 	}
 	return false;
 }
-
+// get the typed sentence and record the typing speed. 
 void Sentence::in_sentence() {
 	Sleep(10);
 	_userSentence = "";
