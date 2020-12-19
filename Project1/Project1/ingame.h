@@ -42,6 +42,8 @@ public:
 	double _userTime;	//time(sec) for the last sentence
 	class file _file;
 	class Score _score;
+	double _entireCorrectness;	//전체 정확도
+	double _entireTime;		//전체 경과 시간
 
 public:
 	Sentence();
@@ -50,13 +52,14 @@ public:
 	virtual bool load_written();
 	//print a sentence one by one
 	virtual void in_sentence();
+	virtual void in_stage();
+	void progressBar(float);		//로딩바 출력
+	virtual void print_last_sentence(int, int, std::string);
 };
 
 
 class UserInterface : public Sentence {
 	string _userInfo;	//user nickname
-	double _entireCorrectness;	//전체 정확도
-	double _entireTime;		//전체 경과 시간
 	//int _entireCorrect;
 	unsigned int choice;	//메인 메뉴 입력
 	bool running;	//프로그램 가동 status
@@ -69,7 +72,6 @@ public:
 	bool load_shortwriting(int tag);
 	virtual void choose_option();
 	inline bool getRunning() const { return	running; }	//실행 중 출력
-	void progressBar(float);		//로딩바 출력
 	void fontsizeChange();		//폰트 크기 변경
 	void reset_score();
 	void reset_input();
