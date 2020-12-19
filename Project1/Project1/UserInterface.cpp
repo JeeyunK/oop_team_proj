@@ -74,6 +74,7 @@ bool UserInterface::basic_out(int tag) {
 				int wrongIndex = -1;
 				if (!_wrongLetterIndex.empty()) {
 					wrongIndex = _wrongLetterIndex.front();
+						
 				}
 				if (wrongIndex == j) {
 					SetConsoleTextAttribute(hConsole, 12);
@@ -94,6 +95,9 @@ bool UserInterface::basic_out(int tag) {
 		Sleep(10);
 		system("cls");
 		_entireTime += _userTime;
+		for (int j = 0; j < _wrongLetterIndex.size(); j++) {
+			_wrongLetterIndex.pop();
+		}
 		_entireCorrectness = check_info(_writtenQueue, _userSentence);
 		lastWrittenSentece = _writtenQueue.front();
 		_writtenQueue.pop();

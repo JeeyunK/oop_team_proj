@@ -6,7 +6,6 @@
 #include <string>
 #pragma warning (disable: 4996)
 //show filepath.txt's filepaths
-
 void file::show_path() {
 	for (int i = 0; i < size; i++) {
 		std::cout << i << ". " << file_list[i].PATH << std::endl;
