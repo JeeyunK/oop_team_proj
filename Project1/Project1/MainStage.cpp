@@ -1,7 +1,7 @@
 #include "ingame.h"
 
 //initialize the sentence object.
-Sentence::Sentence() {
+MainStage::MainStage() {
 	_writtenQueue = {};
 	//_userVector = {};
 	_userSentence = "";
@@ -12,7 +12,7 @@ Sentence::Sentence() {
 }
 //load the filepath and open the file.
 //if there is no file, we just print "we have a problem ~ "
-bool Sentence::load_written() {
+bool MainStage::load_written() {
 	const char* file_path = (_file.file_list[_writtenNum-1].PATH).c_str();
 	_writtenFile.open(file_path, ios::in);
 	if (_writtenFile.is_open()) {
@@ -31,7 +31,7 @@ bool Sentence::load_written() {
 	return false;
 }
 // get the typed sentence and record the typing speed. 
-void Sentence::in_sentence() {
+void MainStage::in_sentence() {
 	Sleep(10);
 	_userSentence = "";
 	cout << "-> ";
@@ -51,7 +51,7 @@ void Sentence::in_sentence() {
 	//_userVector.push_back(_userSentence);
 }
 
-void Sentence::in_stage() {
+void MainStage::in_stage() {
 	system("cls");
 	cout << "\nStart game after 3 seconds!!" << endl;
 	Sleep(1000);
@@ -91,7 +91,7 @@ void Sentence::in_stage() {
 	}
 }
 
-void Sentence::progressBar(float progress) {
+void MainStage::progressBar(float progress) {
 	//float progress = 0.0;
 	//while (progress < 1.0) {
 	//cout << progress;
@@ -111,7 +111,7 @@ void Sentence::progressBar(float progress) {
 	cout << endl;
 }
 
-void Sentence::print_last_sentence(int i, int qsize, std::string lastWrittenSentece) {
+void MainStage::print_last_sentence(int i, int qsize, std::string lastWrittenSentece) {
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	cout << i - 1 << ". " << lastWrittenSentece << endl;
@@ -134,4 +134,22 @@ void Sentence::print_last_sentence(int i, int qsize, std::string lastWrittenSent
 	}
 	SetConsoleTextAttribute(hConsole, 15);
 	cout << endl;
+}
+
+void MainStage::print_result() {
+	cout << "Great job! " << endl;
+	cout << "           Your Score" << endl;
+	cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
+	_score.add_score(_userNickname, _entireCorrectness, tot_letters / _entireTime * 60);
+	reset_score();
+}
+
+void MainStage::reset_score() {
+	correct = 0;
+	wrong = 0;
+	tot_letters = 0;
+	user_correctness = 0;
+
+	_entireCorrectness = 0;
+	_entireTime = 0;
 }

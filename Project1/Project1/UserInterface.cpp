@@ -92,6 +92,7 @@ void UserInterface::load_info() {
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
 	getline(cin, _userInfo);
+	_userNickname = _userInfo;
 choice_loop:
 	cout << "MAIN MENU" << endl << endl;
 menu:
@@ -110,11 +111,7 @@ menu:
 		system("cls");
 		check = basic_out(0);
 		if (check) break;
-		cout << "Great job! " << endl;
-		cout << "           Your Score" << endl;
-		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
-		reset_score();
+		print_result();
 		//cout << "Ranking is updated.\n" << endl;
 		cout << "\nWhat do you want to now?" << endl;
 		goto menu;
@@ -123,11 +120,7 @@ menu:
 		system("cls");
 		check = basic_out(1);
 		if (check) break;
-		cout << "Great job! " << endl;
-		cout << "           Your Score" << endl;
-		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
-		reset_score();
+		print_result();
 		//cout << "Ranking is updated.\n" << endl;
 		cout << "\nWhat do you want to now?" << endl;
 		goto menu;
@@ -180,15 +173,6 @@ void UserInterface::fontsizeChange() {
 	cout << "This is a changed font size" << endl;
 }
 
-void UserInterface::reset_score() {
-	correct = 0;
-	wrong = 0;
-	tot_letters = 0;
-	user_correctness = 0;
-
-	_entireCorrectness = 0;
-	_entireTime = 0;
-}
 
 void UserInterface::reset_input() {
 	system("cls");

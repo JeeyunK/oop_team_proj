@@ -32,7 +32,7 @@ public:
 	virtual double check_info(queue <string> written_vector, string user_sentence);
 };
 
-class Sentence : public PracticeInfo {
+class MainStage : public PracticeInfo {
 public:
 	queue <string> _writtenQueue;	//save the stage file
 	//vector <string> _userVector;
@@ -44,10 +44,11 @@ public:
 	class Score _score;
 	double _entireCorrectness;	//전체 정확도
 	double _entireTime;		//전체 경과 시간
+	string _userNickname;
 
 public:
-	Sentence();
-	virtual ~Sentence() {}
+	MainStage();
+	virtual ~MainStage() {}
 	//loading file
 	virtual bool load_written();
 	//print a sentence one by one
@@ -55,10 +56,12 @@ public:
 	virtual void in_stage();
 	void progressBar(float);		//로딩바 출력
 	virtual void print_last_sentence(int, int, std::string);
+	virtual void print_result();
+	void reset_score();
 };
 
 
-class UserInterface : public Sentence {
+class UserInterface : public MainStage {
 	string _userInfo;	//user nickname
 	//int _entireCorrect;
 	unsigned int choice;	//메인 메뉴 입력
@@ -73,7 +76,6 @@ public:
 	virtual void choose_option();
 	inline bool getRunning() const { return	running; }	//실행 중 출력
 	void fontsizeChange();		//폰트 크기 변경
-	void reset_score();
 	void reset_input();
 	void minigame_start();
 };
