@@ -27,7 +27,7 @@ public:
 
 public:
 	PracticeInfo();
-	~PracticeInfo() {}
+	virtual ~PracticeInfo() {}
 	//compare user_sentence and stage_sentence(for correctness)
 	virtual double check_info(queue <string> written_vector, string user_sentence);
 };
@@ -50,13 +50,13 @@ public:
 	MainStage();
 	virtual ~MainStage() {}
 	//loading file
-	virtual bool load_written();
+	virtual bool load_written(); // read and insert write sentence
 	//print a sentence one by one
-	virtual void in_sentence();
-	virtual void in_stage();
+	virtual void in_sentence(); // receive user's input and record typing speed
+	virtual void in_stage(); // main part of typing game
 	void progressBar(float);		//로딩바 출력
-	virtual void print_last_sentence(int, int, std::string);
-	virtual void print_result();
+	virtual void print_last_sentence(int, int, std::string); // print user's last sentece
+	virtual void print_result(); // print stage's result
 	void reset_score();
 };
 
@@ -69,7 +69,7 @@ class UserInterface : public MainStage {
 
 public:
 	UserInterface();
-	~UserInterface() {}
+	virtual ~UserInterface() {}
 	virtual bool basic_out(int tag);	//managing total stage playing (invoke every methods)
 	virtual void load_info();	//invoking basic_out()
 	bool load_shortwriting(int tag);
