@@ -46,62 +46,7 @@ bool UserInterface::basic_out(int tag) {
 	bool check = load_shortwriting(tag);
 	if (check) return true;
 	// make a wait time for 3 seconds.
-	system("cls");
-	cout << "\nStart game after 3 seconds!!" << endl;
-	Sleep(1000);
-	system("cls");
-	cout << "\nStart game after 2 seconds!!" << endl;
-	Sleep(1000);
-	system("cls");
-	cout << "\nStart game after 1 seconds!!" << endl;
-	Sleep(1000);
-	system("cls");
-	int i = 0;
-	//in_sentence();
-	int qsize = _writtenQueue.size();
-	string lastWrittenSentece;
-	HANDLE hConsole;
-	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	while (!_writtenQueue.empty()) {
-		float prog = ((float)i / (float)qsize);
-		progressBar(prog);
-		i++;
-		cout << "Current your correctness : " << _entireCorrectness << ", Current your speed : " << tot_letters / _entireTime * 60 << endl;
-		if (i > 1) {
-			cout << i - 1 << ". " << lastWrittenSentece << endl;
-			cout << " -> ";
-			for (int j = 0; j < _userSentence.size(); j++) {
-				int wrongIndex = -1;
-				if (!_wrongLetterIndex.empty()) {
-					wrongIndex = _wrongLetterIndex.front();
-						
-				}
-				if (wrongIndex == j) {
-					SetConsoleTextAttribute(hConsole, 12);
-					cout << _userSentence[j];
-					_wrongLetterIndex.pop();
-				}
-				else {
-					SetConsoleTextAttribute(hConsole, 15);
-					cout << _userSentence[j];
-				}
-			}
-			SetConsoleTextAttribute(hConsole, 15);
-			cout << endl;
-		}
-		cout << i << ". " << _writtenQueue.front() << endl;
-		Sleep(10);
-		in_sentence();
-		Sleep(10);
-		system("cls");
-		_entireTime += _userTime;
-		for (int j = 0; j < _wrongLetterIndex.size(); j++) {
-			_wrongLetterIndex.pop();
-		}
-		_entireCorrectness = check_info(_writtenQueue, _userSentence);
-		lastWrittenSentece = _writtenQueue.front();
-		_writtenQueue.pop();
-	}
+	in_stage();
 	return false;
 }
 
@@ -147,6 +92,7 @@ void UserInterface::load_info() {
 	_score.update_score();
 	cout << "\nPlease insert your name : ";
 	getline(cin, _userInfo);
+	_userNickname = _userInfo;
 choice_loop:
 	cout << "MAIN MENU" << endl << endl;
 menu:
@@ -165,11 +111,7 @@ menu:
 		system("cls");
 		check = basic_out(0);
 		if (check) break;
-		cout << "Great job! " << endl;
-		cout << "           Your Score" << endl;
-		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
-		reset_score();
+		print_result();
 		//cout << "Ranking is updated.\n" << endl;
 		cout << "\nWhat do you want to now?" << endl;
 		goto menu;
@@ -178,11 +120,7 @@ menu:
 		system("cls");
 		check = basic_out(1);
 		if (check) break;
-		cout << "Great job! " << endl;
-		cout << "           Your Score" << endl;
-		cout << "Correctness : " << _entireCorrectness << " Speed : " << tot_letters / _entireTime * 60 << endl;
-		_score.add_score(_userInfo, _entireCorrectness, tot_letters / _entireTime * 60);
-		reset_score();
+		print_result();
 		//cout << "Ranking is updated.\n" << endl;
 		cout << "\nWhat do you want to now?" << endl;
 		goto menu;
@@ -217,26 +155,6 @@ menu:
 }
 
 
-void UserInterface::progressBar(float progress) {
-	//float progress = 0.0;
-	//while (progress < 1.0) {
-	//cout << progress;
-	int barWidth = 50;
-	cout << "\n progress : [";
-	int pos = (barWidth * progress);
-	for (int i = 0; i < barWidth; ++i) {
-		if (i < pos)
-			cout << "=";
-		else if (i == pos)
-			cout << ">";
-		else
-			cout << " ";
-	}
-	cout << "] " << int(progress * 100.0) << "%\r";
-	cout.flush();	
-	cout << endl;
-}
-
 void UserInterface::fontsizeChange() {
 	int x, y;
 	cout << "\nInput desire font size in terms of length of X and Y" << endl;
@@ -255,15 +173,6 @@ void UserInterface::fontsizeChange() {
 	cout << "This is a changed font size" << endl;
 }
 
-void UserInterface::reset_score() {
-	correct = 0;
-	wrong = 0;
-	tot_letters = 0;
-	user_correctness = 0;
-
-	_entireCorrectness = 0;
-	_entireTime = 0;
-}
 
 void UserInterface::reset_input() {
 	system("cls");

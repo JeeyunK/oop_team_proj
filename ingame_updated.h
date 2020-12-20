@@ -28,7 +28,7 @@ public:
 	virtual double check_info(queue <string> written_vector, string user_sentence);
 };
 
-class Sentence : public PracticeInfo {
+class MainStage : public PracticeInfo {
 public:
 	queue <string> _writtenQueue;	//save the stage file
 	//vector <string> _userVector;
@@ -38,8 +38,8 @@ public:
 	double _userTime;	//time(sec) for the last sentence
 
 public:
-	Sentence();
-	virtual ~Sentence() {}
+	MainStage();
+	virtual ~MainStage() {}
 	//loading file
 	virtual void load_written();
 	//print a sentence one by one
@@ -47,7 +47,7 @@ public:
 };
 
 
-class UserInterface : public Sentence {
+class UserInterface : public MainStage {
 	string _userInfo;	//user nickname
 	double _entireCorrectness;	//전체 정확도
 	double _entireTime;		//전체 경과 시간

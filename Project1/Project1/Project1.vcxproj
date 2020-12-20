@@ -143,7 +143,7 @@
     <ClCompile Include="minigame.cpp" />
     <ClCompile Include="PracticeInfo.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="Sentence.cpp" />
+    <ClCompile Include="MainStage.cpp" />
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
