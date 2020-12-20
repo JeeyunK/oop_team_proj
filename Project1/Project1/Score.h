@@ -10,7 +10,7 @@ struct form {
 	int speed;
 };
 
-class Score {
+class Score final {
 private:
 	int size;
 	std::list<struct form> rank_list;

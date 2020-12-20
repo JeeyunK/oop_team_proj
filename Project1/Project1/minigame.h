@@ -3,7 +3,7 @@
 #include "ingame.h"
 
 
-class MiniGame {
+class MiniGame final {
 //멤버변수
 private:
 	int input;		//입력받은 key

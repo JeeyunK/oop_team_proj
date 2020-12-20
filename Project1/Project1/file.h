@@ -9,7 +9,7 @@ struct file_struct {
 //this is file class to manage the file system in this program.
 //consist of file_list and size. 
 // when we use get_file() function, we update file_list same as the file's contents.
-class file {
+class file final{
 public:
 	struct file_struct file_list[100];
 	int size;

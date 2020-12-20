@@ -32,7 +32,7 @@ public:
 	virtual double check_info(queue <string> written_vector, string user_sentence);
 };
 
-class MainStage : public PracticeInfo {
+class MainStage : public PracticeInfo  {
 public:
 	queue <string> _writtenQueue;	//save the stage file
 	//vector <string> _userVector;
@@ -61,7 +61,7 @@ public:
 };
 
 
-class UserInterface : public MainStage {
+class UserInterface final : public MainStage {
 	string _userInfo;	//user nickname
 	//int _entireCorrect;
 	unsigned int choice;	//메인 메뉴 입력

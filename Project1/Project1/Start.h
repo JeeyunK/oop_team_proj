@@ -13,7 +13,7 @@ private:
 	bool running;
 public:
 	Start();
-	~Start();
+	virtual ~Start();
 
 	//Functions
 	void mainMenu();
